@@ -3,7 +3,6 @@ FactoryGirl.define do
     name "MyText"
     description "MyText"
     unit_price 1.5
-
-  
+  merchant
   end
 end
