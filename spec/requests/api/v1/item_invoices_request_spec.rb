@@ -8,4 +8,13 @@ describe "Invoice Items API" do
 
     expect(response).to be_success
   end
+
+  it "shows a single invoice_item" do
+    list = create_list(:invoice_item, 3)
+    invoice_item = list.first
+
+    get "/api/v1/invoice_items/#{invoice_item.id}"
+
+    expect(response).to be_success
+  end
 end
