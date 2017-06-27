@@ -14,4 +14,13 @@ describe "Merchants API" do
     expect(first_merch).to have_key("name")
     expect(first_merch["name"]).to be_a String
   end
+
+  it "shows a single merchant" do
+    list = create_list(:merchant, 3)
+    merchant = list.first
+
+    get "/api/v1/merchants/#{merchant.id}"
+
+    expect(response).to be_success
+  end
 end
