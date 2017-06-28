@@ -30,11 +30,13 @@ Rails.application.routes.draw do
         get '/:id/invoice_items', to: 'invoice_items#index'
         get '/:id/customer', to: 'customers#index'
         get '/:id/merchant', to: 'merchants#index'
+        get '/random', to: 'random#show'
       end
       resources :invoices, only: [:index, :show]
       namespace :invoice_items do
         get '/:id/item', to: 'items#index'
         get '/:id/invoice', to: 'invoices#index'
+        get '/random', to: 'random#show'
       end
       resources :invoice_items, only: [:index, :show]
     end
