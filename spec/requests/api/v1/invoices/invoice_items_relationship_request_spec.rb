@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe "Invoices Transaction Relationship API" do
-  it "sends a list of invoices transaction" do
+describe "Invoices Items Relationship API" do
+  it "sends a list of invoice items" do
     invoice = create(:invoice)
-    transactions_list = create_list(:transaction, 10)
-    invoice.transactions << transactions_list
+    items_list = create_list(:item, 10)
+    invoice.items << items_list
 
-    get "/api/v1/invoices/#{invoice.id}/transactions"
+    get "/api/v1/invoices/#{invoice.id}/items"
 
     expect(response).to be_success
   end
