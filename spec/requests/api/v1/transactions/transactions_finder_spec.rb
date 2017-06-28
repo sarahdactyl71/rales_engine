@@ -17,7 +17,7 @@ describe 'find endpoints' do
     expect(transaction_endpoint['id']).to eq(@transaction.id)
   end
 
-  xit "returns a single transaction based on a credit_card_number" do
+  it "returns a single transaction based on a credit_card_number" do
     get "/api/v1/transactions/find?credit_card_number=#{@transaction.credit_card_number}"
 
     transaction_endpoint = JSON.parse(response.body)
@@ -25,7 +25,7 @@ describe 'find endpoints' do
     expect(transaction_endpoint['id']).to eq(@transaction.id)
   end
 
-  xit "returns a single transaction based on a result" do
+  it "returns a single transaction based on a result" do
     get "/api/v1/transactions/find?result=#{@transaction.result}"
 
     transaction_endpoint = JSON.parse(response.body)
@@ -33,7 +33,7 @@ describe 'find endpoints' do
     expect(transaction_endpoint['id']).to eq(@transaction.id)
   end
 
-  xit "returns a single transaction based on a created date" do
+  it "returns a single transaction based on a created date" do
     get "/api/v1/transactions/find?created_at=#{@transaction.created_at}"
 
     transaction_endpoint = JSON.parse(response.body)
@@ -41,7 +41,7 @@ describe 'find endpoints' do
     expect(transaction_endpoint['id']).to eq(@transaction.id)
   end
 
-  xit "returns a single transaction based on updated date" do
+  it "returns a single transaction based on updated date" do
     get "/api/v1/transactions/find?updated_at=#{@transaction.updated_at}"
 
     transaction_endpoint = JSON.parse(response.body)
@@ -76,7 +76,7 @@ describe 'find_all endpoints' do
                                         updated_at: "2032-03-27 14:53:59 UTC",
                                         invoice: invoice)
   end
-  xit "returns a collection of transactions based on an id" do
+  it "returns a collection of transactions based on an id" do
     get "/api/v1/transactions/find_all?id=#{@transaction1.id}"
 
     transaction_endpoint = JSON.parse(response.body)
@@ -84,7 +84,7 @@ describe 'find_all endpoints' do
     expect(transaction_endpoint.first['id']).to eq(@transaction1.id)
   end
 
-  xit "returns a collection of transactions based on a cc#{}" do
+  it "returns a collection of transactions based on a cc#{}" do
     get "/api/v1/transactions/find_all?credit_card_number=#{@transaction1.credit_card_number}"
 
     transaction_endpoint = JSON.parse(response.body)
@@ -93,7 +93,7 @@ describe 'find_all endpoints' do
     expect(transaction_endpoint.first['id']).to eq(@transaction1.id)
   end
 
-  xit "returns a collection of transactions based on a created date" do
+  it "returns a collection of transactions based on a created date" do
     get "/api/v1/transactions/find_all?created_at=#{@transaction1.created_at}"
 
     transaction_endpoint = JSON.parse(response.body)
@@ -103,7 +103,7 @@ describe 'find_all endpoints' do
     expect(transaction_endpoint.last['id']).to eq(@transaction4.id)
   end
 
-  xit "returns a collection of transactions based on updated date" do
+  it "returns a collection of transactions based on updated date" do
     get "/api/v1/transactions/find_all?updated_at=#{@transaction2.updated_at}"
 
     transaction_endpoint = JSON.parse(response.body)
