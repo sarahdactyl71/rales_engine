@@ -5,8 +5,8 @@ describe 'find endpoints' do
     merchant = create(:merchant)
     customer = create(:customer)
     invoice = create(:invoice, merchant: merchant, customer: customer)
-    create(:transaction, credit_card_number: '12345', result: 'success', invoice: invoice)
-    @transaction = create(:transaction, credit_card_number: '6789', result: 'failed', invoice: invoice)
+    @transaction = create(:transaction, credit_card_number: '6789', result: 'failed', created_at: "2016-06-28 14:53:59 UTC",
+    updated_at: "2017-06-28 14:53:59 UTC", invoice: invoice)
   end
 
   it "returns a single transaction based on an id" do
@@ -57,23 +57,23 @@ describe 'find_all endpoints' do
     invoice = create(:invoice, merchant: merchant, customer: customer)
     @transaction1 = Transaction.create!(credit_card_number: "12345",
                                         result: "success",
-                                        created_at: "2000-03-27 14:53:59 UTC",
-                                        updated_at: "2009-03-27 14:53:59 UTC",
+                                        created_at: "2000-06-28 14:53:59 UTC",
+                                        updated_at: "2001-06-28 14:53:59 UTC",
                                         invoice: invoice)
     @transaction2 = Transaction.create!(credit_card_number: "12345",
                                         result: "success",
-                                        created_at: "2003-03-27 14:53:59 UTC",
-                                        updated_at: "2005-03-27 14:53:59 UTC",
+                                        created_at: "2003-06-28 14:53:59 UTC",
+                                        updated_at: "2005-06-28 14:53:59 UTC",
                                         invoice: invoice)
     @transaction3 = Transaction.create!(credit_card_number: "6789",
                                         result: "failed",
-                                        created_at: "2004-03-27 14:53:59 UTC",
-                                        updated_at: "2005-03-27 14:53:59 UTC",
+                                        created_at: "2004-06-28 14:53:59 UTC",
+                                        updated_at: "2005-06-28 14:53:59 UTC",
                                         invoice: invoice)
     @transaction4 = Transaction.create!(credit_card_number: "6789",
                                         result: "failed",
-                                        created_at: "2000-03-27 14:53:59 UTC",
-                                        updated_at: "2032-03-27 14:53:59 UTC",
+                                        created_at: "2000-06-28 14:53:59 UTC",
+                                        updated_at: "2032-06-28 14:53:59 UTC",
                                         invoice: invoice)
   end
   it "returns a collection of transactions based on an id" do
