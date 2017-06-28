@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe "Invoices Transaction Relationship API" do
-  it "sends a list of invoices transaction" do
+describe "Invoice Merchant Relationship API" do
+  it "sends the merchant of an invoice" do
     invoice = create(:invoice)
-    transactions_list = create_list(:transaction, 10)
-    invoice.transactions << transactions_list
+    merchant = create(:merchant)
+    invoice.merchant = merchant
 
-    get "/api/v1/invoices/#{invoice.id}/transactions"
+    get "/api/v1/invoices/#{invoice.id}/merchant"
 
     expect(response).to be_success
   end
