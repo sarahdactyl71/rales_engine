@@ -30,7 +30,7 @@ describe "Merchants Business Intelligence API" do
     invoice = merchants.first.invoices.first
     invoice.update(created_at: DateTime.yesterday)
     date = merchants.first.invoices.first.created_at.strftime("%Y-%m-%d %H:%M:%S")
-
+    binding.pry
     get "/api/v1/merchants/revenue", params: {date: date}
     expect(response).to be_success
     revenue = JSON.parse(response.body)
