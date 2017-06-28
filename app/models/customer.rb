@@ -5,6 +5,6 @@ class Customer < ApplicationRecord
   has_many :merchants, through: :invoices
 
   def favorite_merchant
-    binding.pry
+    #binding.pry
   end
 end
