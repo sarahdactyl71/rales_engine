@@ -13,7 +13,14 @@ Rails.application.routes.draw do
         get '/:id/favorite_merchant', to: 'favorite_merchant#show'
       end
       resources :transactions, only: [:index, :show]
+      namespace :transactions do
+        get '/:id/invoice', to: 'invoices#index', as: 'invoices'
+      end
       resources :items, only: [:index, :show]
+      namespace :items do
+        get '/:id/invoice_items', to: 'invoice_items#index', as: "invoice_items"
+        get '/:id/merchant', to: 'merchants#show', as: 'merchant'
+      end
       resources :invoices, only: [:index, :show]
       namespace :invoices do
         get '/:id/items', to: 'items#index'
