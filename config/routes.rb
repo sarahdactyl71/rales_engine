@@ -2,39 +2,46 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :merchants do
+        get '/random', to: 'random#show'
         get '/most_revenue', to: 'most_revenue#index'
         get '/:id/invoices', to: 'invoices#index'
         get '/:id/items', to: 'items#index'
       end
       resources :merchants, only: [:index, :show]
-      resources :customers, only: [:index, :show]
+
       namespace :customers do
         get '/:id/invoices', to: 'invoices#index', as: 'invoices'
         get '/:id/transactions', to: 'transactions#index', as: 'transactions'
         get '/:id/favorite_merchant', to: 'favorite_merchant#show'
+        get '/random', to: 'random#show'
       end
-      resources :transactions, only: [:index, :show]
+      resources :customers, only: [:index, :show]
       namespace :transactions do
         get '/:id/invoice', to: 'invoices#index', as: 'invoices'
+        get '/random', to: 'random#show'
       end
-      resources :items, only: [:index, :show]
+      resources :transactions, only: [:index, :show]
       namespace :items do
         get '/:id/invoice_items', to: 'invoice_items#index', as: "invoice_items"
         get '/:id/merchant', to: 'merchants#show', as: 'merchant'
+        get '/random', to: 'random#show'
       end
-      resources :invoices, only: [:index, :show]
+      resources :items, only: [:index, :show]
       namespace :invoices do
         get '/:id/items', to: 'items#index'
         get '/:id/transactions', to: 'transactions#index'
         get '/:id/invoice_items', to: 'invoice_items#index'
         get '/:id/customer', to: 'customers#index'
         get '/:id/merchant', to: 'merchants#index'
+        get '/random', to: 'random#show'
       end
-      resources :invoice_items, only: [:index, :show]
+      resources :invoices, only: [:index, :show]
       namespace :invoice_items do
         get '/:id/item', to: 'items#index'
         get '/:id/invoice', to: 'invoices#index'
+        get '/random', to: 'random#show'
       end
+      resources :invoice_items, only: [:index, :show]
     end
   end
 end
