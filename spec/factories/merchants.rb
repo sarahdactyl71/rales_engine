@@ -3,7 +3,7 @@ FactoryGirl.define do
     name Faker::Name.name
 
     factory :merchant_with_invoices_and_items do
-      # lauren's factories:
+      items { create_list(:item, 3)}
       invoices {create_list(:invoice_with_items, 3)}
     end
     factory :merchant_with_transactions do
