@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe InvoiceItem, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "invoice_item can be created" do
+    invoice_item = build(:invoice_item, quantity: 5, unit_price: 3.5)
+
+    expect(invoice_item.quantity).to eq(5)
+    expect(invoice_item.unit_price).to eq(3.5)
+  end
 end

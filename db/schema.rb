@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170627170741) do
+ActiveRecord::Schema.define(version: 20170627200751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 20170627170741) do
     t.integer "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "invoice_id"
+    t.index ["invoice_id"], name: "index_transactions_on_invoice_id"
   end
 
   add_foreign_key "invoice_items", "invoices"
@@ -72,4 +74,5 @@ ActiveRecord::Schema.define(version: 20170627170741) do
   add_foreign_key "invoices", "customers"
   add_foreign_key "invoices", "merchants"
   add_foreign_key "items", "merchants"
+  add_foreign_key "transactions", "invoices"
 end
