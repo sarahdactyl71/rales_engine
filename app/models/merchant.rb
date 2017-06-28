@@ -19,4 +19,8 @@ class Merchant < ApplicationRecord
     .order("items_sold DESC")
     .limit(quantity)
   end
+
+  def self.total_revenue_on(date)
+
+  end
 end
