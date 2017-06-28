@@ -8,13 +8,4 @@ describe "Invoices API" do
 
     expect(response).to be_success
   end
-
-  it "shows a single invoice" do
-    list = create_list(:invoice, 3)
-    invoice = list.first
-
-    get "/api/v1/invoices/#{invoice.id}"
-
-    expect(response).to be_success
-  end
 end

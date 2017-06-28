@@ -8,13 +8,4 @@ describe "Customers API" do
 
     expect(response).to be_success
   end
-
-  it "shows a single customer" do
-    list = create_list(:customer, 3)
-    customer = list.first
-
-    get "/api/v1/customers/#{customer.id}"
-
-    expect(response).to be_success
-  end
 end
