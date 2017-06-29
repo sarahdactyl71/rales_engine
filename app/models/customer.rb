@@ -5,10 +5,14 @@ class Customer < ApplicationRecord
   has_many :merchants, through: :invoices
 
   def favorite_merchant
-    self.invoices
-    .joins(:merchant, :transactions)
+    fave_merch =
+    self.merchants
+    .joins(invoices: [:transactions])
     .where(transactions: {result: 0})
-    .group(:merchant_id)
-    .order
+    .group(:id)
+    .order("count_all DESC")
+    .count
+    .first
+    Merchant.find(fave_merch[0])
   end
 end
