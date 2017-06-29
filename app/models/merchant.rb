@@ -36,4 +36,12 @@ class Merchant < ApplicationRecord
     .where(transactions: {result: 0})
     .sum('quantity * unit_price')
   end
+
+  def most_revenue_per(date)
+    self.invoices
+    .joins(:invoice_items, :transactions)
+    .where(transactions: {result: 0})
+    .where(invoices: {created_at: date})
+    .sum('quantity * unit_price')
+  end
 end

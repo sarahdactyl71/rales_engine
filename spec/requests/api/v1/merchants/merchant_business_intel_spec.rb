@@ -46,4 +46,25 @@ describe "Merchants Business Intelligence API" do
     merchant = JSON.parse(response.body)
     expect(@merchants.pluck(:id)).to include(merchant["id"])
   end
+
+  it "returns the total revenue for that merchant for a specific invoice date x" do
+    @merchants = create_list(:merchant_with_invoices_and_items, 3)
+    invoice = @merchants.first.invoices.first
+    invoice.update(created_at: Date.today)
+    date = Date.today.to_datetime.to_formatted_s
+
+    get "/api/v1/merchants/#{@merchants.first.id}/revenue?date=#{date}"
+
+    expect(response).to be_success
+  end
+
+  xit "returns the customer who has conducted the most total number of successful transactions" do
+    @merchants = create_list(:merchant_with_transactions, 3)
+
+    get "/api/v1/merchants/#{@merchants.first.id}/revenue"
+
+    expect(response).to be_success
+    merchant = JSON.parse(response.body)
+    expect(@merchants.pluck(:id)).to include(merchant["id"])
+  end
 end

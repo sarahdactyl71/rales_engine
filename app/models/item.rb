@@ -29,6 +29,6 @@ class Item < ApplicationRecord
     .group(:id)
     .order("quantity_sold DESC, created_at DESC")
     .first
-    .created_at
+    #.created_at
   end
 end
