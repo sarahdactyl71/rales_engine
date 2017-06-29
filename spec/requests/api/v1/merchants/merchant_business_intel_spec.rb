@@ -46,5 +46,4 @@ describe "Merchants Business Intelligence API" do
     merchant = JSON.parse(response.body)
     expect(@merchants.pluck(:id)).to include(merchant["id"])
   end
-
 end
