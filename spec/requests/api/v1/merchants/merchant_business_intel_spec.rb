@@ -58,10 +58,11 @@ describe "Merchants Business Intelligence API" do
     expect(response).to be_success
   end
 
-  xit "returns the customer who has conducted the most total number of successful transactions" do
+  it "returns the customer who has conducted the most total number of successful transactions" do
     @merchants = create_list(:merchant_with_transactions, 3)
+    merchant = @merchants.first
 
-    get "/api/v1/merchants/#{@merchants.first.id}/revenue"
+    get "/api/v1/merchants/#{merchant.id}/favorite_customer"
 
     expect(response).to be_success
     merchant = JSON.parse(response.body)
