@@ -22,4 +22,16 @@ describe "Items Business Intelligence API" do
     #item = items.first
     expect(items.count).to eq(2)
   end
+
+  it "returns the date with the most sales for the given item using the invoice date" do
+    invoices = create_list(:invoice_with_items, 3)
+    item = invoices.first.items.first
+
+    get "/api/v1/items/#{item.id}/best_day"
+
+    expect(response).to be_success
+    items = JSON.parse(response.body)
+    #item = items.first
+    expect(items.count).to eq(2)
+  end
 end

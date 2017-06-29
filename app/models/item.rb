@@ -21,4 +21,8 @@ class Item < ApplicationRecord
     .order("total DESC")
     .limit(quantity)
   end
+
+  def best_day
+    
+  end
 end
