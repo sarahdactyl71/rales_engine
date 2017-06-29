@@ -68,4 +68,15 @@ describe "Merchants Business Intelligence API" do
     merchant = JSON.parse(response.body)
     expect(@merchants.pluck(:id)).to include(merchant["id"])
   end
+
+  it "returns a collection of customers which have pending (unpaid) invoices" do
+    @merchants = create_list(:merchant_with_transactions, 3)
+    merchant = @merchants.first
+
+    get "/api/v1/merchants/#{merchant.id}/customers_with_pending_invoices"
+
+    expect(response).to be_success
+    merchant = JSON.parse(response.body)
+    expect(@merchants.pluck(:id)).to include(merchant["id"])
+  end
 end

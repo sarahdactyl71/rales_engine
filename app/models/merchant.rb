@@ -55,4 +55,14 @@ class Merchant < ApplicationRecord
     .first
     Customer.find(customer[0])
   end
+
+  def pending_invoices
+    invoices = Invoice.find_by_sql("SELECT customers.id
+                                    FROM invoices
+                                    JOIN customers ON invoices.customer_id = customers.id
+                                    JOIN transactions ON transactions.invoice_id = invoices.id 
+                                    JOIN merchants ON invoices.merchant_id = merchants.id
+                                    WHERE merchants.id = #{self.id} AND transactions.result = 1;")
+    invoices.map { |invoice| Customer.find(invoice.customer_id) }.uniq
+  end
 end
