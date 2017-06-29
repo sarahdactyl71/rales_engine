@@ -30,10 +30,21 @@ describe "Merchants Business Intelligence API" do
     invoice = merchants.first.invoices.first
     invoice.update(created_at: DateTime.yesterday)
     date = merchants.first.invoices.first.created_at.strftime("%Y-%m-%d %H:%M:%S")
-    binding.pry
+
     get "/api/v1/merchants/revenue", params: {date: date}
+
     expect(response).to be_success
     revenue = JSON.parse(response.body)
-    expect(revenue["total_revenue"]).to eq("40.00")
   end
+
+  it "returns the total revenue for that merchant across all transactions" do
+    @merchants = create_list(:merchant_with_transactions, 3)
+
+    get "/api/v1/merchants/#{@merchants.first.id}/revenue"
+
+    expect(response).to be_success
+    merchant = JSON.parse(response.body)
+    expect(@merchants.pluck(:id)).to include(merchant["id"])
+  end
+
 end

@@ -30,4 +30,10 @@ class Merchant < ApplicationRecord
     .sum("unit_price * quantity")
   end
 
+  def merchant_revenue
+    self.invoices
+    .joins(:invoice_items, :transactions)
+    .where(transactions: {result: 0})
+    .sum('quantity * unit_price')
+  end
 end
