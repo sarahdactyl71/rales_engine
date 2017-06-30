@@ -35,8 +35,6 @@ describe 'find endpoints' do
     expect(item_endpoint['name']).to eq(@item.name)
   end
 
-  
-
   it "returns a single item based on a created date" do
     get "/api/v1/items/find?created_at=#{@item.created_at}"
 
