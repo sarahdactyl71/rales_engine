@@ -20,6 +20,6 @@ describe "Customer Merchant API" do
 
     favorite_merch = JSON.parse(response.body)
 
-    expect(favorite_merch).to be_success
+    expect(response).to be_success
   end
 end

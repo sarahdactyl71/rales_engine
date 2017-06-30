@@ -35,13 +35,7 @@ describe 'find endpoints' do
     expect(item_endpoint['name']).to eq(@item.name)
   end
 
-  xit "returns a single item based on a unit price" do
-    get "/api/v1/items/find?unit_price=#{@item.unit_price}"
-
-    item_endpoint = JSON.parse(response.body)
-
-    expect(item_endpoint['id']).to eq(@item.id)
-  end
+  
 
   it "returns a single item based on a created date" do
     get "/api/v1/items/find?created_at=#{@item.created_at}"

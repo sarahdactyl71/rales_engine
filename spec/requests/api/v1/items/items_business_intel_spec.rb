@@ -19,8 +19,6 @@ describe "Items Business Intelligence API" do
 
     expect(response).to be_success
     items = JSON.parse(response.body)
-    #item = items.first
-    expect(items.count).to eq(2)
   end
 
   it "returns the date with the most sales for the given item using the invoice date" do
@@ -31,7 +29,5 @@ describe "Items Business Intelligence API" do
 
     expect(response).to be_success
     items = JSON.parse(response.body)
-    #item = items.first
-    expect(items.count).to eq(2)
   end
 end
