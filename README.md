@@ -34,7 +34,11 @@ rake db:create
 rake db:migrate
 rake db:test:prepare
 ```
+To import all the CSV files
 
+```
+bundle exec rake import
+```
 That should have you up and running!
 
 ## Running the tests
